@@ -116,7 +116,7 @@ const Welcome = () => {
                     <ShieldCheck size={50} color="var(--primary-accent)" />
                 </motion.div>
 
-                <h1 style={{ fontSize: '4.5rem', fontWeight: 900, marginBottom: '20px', letterSpacing: '-0.04em', lineHeight: 1 }}>
+                <h1 style={{ marginBottom: '20px', letterSpacing: '-0.04em', lineHeight: 1.1 }}>
                     Secure Your <br />
                     <span style={{
                         background: 'linear-gradient(90deg, var(--primary-accent), var(--secondary-accent))',
@@ -126,45 +126,48 @@ const Welcome = () => {
                     }}>Digital Frontier</span>
                 </h1>
 
-                <p style={{ fontSize: '1.4rem', color: 'var(--text-secondary)', maxWidth: '750px', margin: '0 auto 48px', lineHeight: '1.6' }}>
+                <p style={{ fontSize: 'clamp(1rem, 3vw, 1.4rem)', color: 'var(--text-secondary)', maxWidth: '750px', margin: '0 auto 48px', lineHeight: '1.6' }}>
                     Welcome to <span style={{ color: 'var(--text-main)', fontWeight: 600 }}>CyberShield Lab</span>.
                     The next-generation open-source simulator for mastering cybersecurity through immersive, hands-on experience.
                 </p>
 
-                <div style={{ display: 'flex', gap: '24px', justifyContent: 'center', marginBottom: '80px' }}>
-                    <Link to="/dashboard">
+                <div style={{ display: 'flex', gap: '16px', justifyContent: 'center', marginBottom: '80px', flexWrap: 'wrap' }}>
+                    <Link to="/dashboard" style={{ width: 'min(100%, 300px)' }}>
                         <motion.button
                             whileHover={{ scale: 1.05, boxShadow: '0 0 20px rgba(0, 255, 136, 0.4)' }}
                             whileTap={{ scale: 0.95 }}
                             style={{
-                                padding: '18px 40px',
+                                width: '100%',
+                                padding: '16px 32px',
                                 backgroundColor: 'var(--primary-accent)',
                                 color: '#000',
                                 borderRadius: '14px',
                                 fontWeight: 800,
-                                fontSize: '1.1rem',
+                                fontSize: '1rem',
                                 display: 'flex',
                                 alignItems: 'center',
+                                justifyContent: 'center',
                                 gap: '12px',
                                 border: 'none',
                                 cursor: 'pointer'
                             }}
                         >
-                            Initialize Hub <ArrowRight size={22} />
+                            Initialize Hub <ArrowRight size={20} />
                         </motion.button>
                     </Link>
-                    <Link to="/docs">
+                    <Link to="/docs" style={{ width: 'min(100%, 300px)' }}>
                         <motion.button
                             whileHover={{ scale: 1.05, backgroundColor: 'rgba(255,255,255,0.05)' }}
                             whileTap={{ scale: 0.95 }}
                             style={{
-                                padding: '18px 40px',
+                                width: '100%',
+                                padding: '16px 32px',
                                 backgroundColor: 'transparent',
                                 color: 'var(--text-main)',
                                 borderRadius: '14px',
                                 border: '1px solid var(--border-color)',
                                 fontWeight: 700,
-                                fontSize: '1.1rem',
+                                fontSize: '1rem',
                                 cursor: 'pointer'
                             }}
                         >
@@ -174,7 +177,7 @@ const Welcome = () => {
                 </div>
             </motion.div>
 
-            <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))', gap: '32px', width: '100%', maxWidth: '1100px', position: 'relative', zIndex: 1 }}>
+            <div className="responsive-grid" style={{ width: '100%', maxWidth: '1100px', position: 'relative', zIndex: 1 }}>
                 {[
                     { icon: <ImageIcon size={28} />, title: 'Steganography', desc: 'Conceal critical data within pixel structures with mathematical precision.' },
                     { icon: <Lock size={28} />, title: 'Advanced Crypto', desc: 'Implement industry-standard AES-256 and classical ciphers for data protection.' },
@@ -187,7 +190,7 @@ const Welcome = () => {
                         transition={{ delay: 0.4 + i * 0.1, duration: 0.8 }}
                         whileHover={{ y: -5, borderColor: 'var(--primary-accent)' }}
                         style={{
-                            padding: '36px',
+                            padding: 'min(36px, 8vw)',
                             backgroundColor: 'var(--card-color)',
                             borderRadius: '24px',
                             border: '1px solid var(--border-color)',
@@ -196,11 +199,12 @@ const Welcome = () => {
                         }}
                     >
                         <div style={{ color: 'var(--primary-accent)', marginBottom: '20px' }}>{item.icon}</div>
-                        <h3 style={{ marginBottom: '12px', fontSize: '1.3rem' }}>{item.title}</h3>
+                        <h3 style={{ marginBottom: '12px', fontSize: '1.2rem' }}>{item.title}</h3>
                         <p style={{ fontSize: '0.95rem', color: 'var(--text-secondary)', margin: 0, lineHeight: '1.6' }}>{item.desc}</p>
                     </motion.div>
                 ))}
             </div>
+
         </div>
     );
 };

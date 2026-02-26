@@ -63,7 +63,7 @@ const Dashboard = () => {
                 <p style={{ maxWidth: '600px' }}>Select an active simulation vector to begin your cybersecurity training. Each lab provides a sandbox environment for practical learning.</p>
             </header>
 
-            <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(320px, 1fr))', gap: '24px' }}>
+            <div className="responsive-grid">
                 {labCards.map((lab, i) => (
                     <Link to={lab.path} key={i}>
                         <motion.div
@@ -114,19 +114,21 @@ const Dashboard = () => {
 
             <div style={{
                 marginTop: '20px',
-                padding: '30px',
+                padding: 'clamp(20px, 5vw, 30px)',
                 borderRadius: '20px',
                 background: 'linear-gradient(135deg, rgba(31, 111, 235, 0.1) 0%, rgba(0, 255, 136, 0.05) 100%)',
                 border: '1px solid var(--border-color)',
                 display: 'flex',
                 justifyContent: 'space-between',
-                alignItems: 'center'
+                alignItems: 'center',
+                flexWrap: 'wrap',
+                gap: '16px'
             }}>
                 <div>
-                    <h3 style={{ marginBottom: '8px' }}>Global Threat Map</h3>
+                    <h3 style={{ marginBottom: '8px', fontSize: '1.1rem' }}>Global Threat Map</h3>
                     <p style={{ margin: 0, fontSize: '0.875rem', opacity: 0.7 }}>Simulated network traffic monitoring is active. No anomalies detected.</p>
                 </div>
-                <div style={{ display: 'flex', gap: '16px' }}>
+                <div style={{ display: 'flex', gap: '16px', flexWrap: 'wrap' }}>
                     <div style={{ display: 'flex', alignItems: 'center', gap: '8px', color: 'var(--primary-accent)', fontSize: '0.875rem' }}>
                         <div style={{ width: '8px', height: '8px', borderRadius: '50%', backgroundColor: 'var(--primary-accent)', boxShadow: '0 0 10px var(--primary-accent)' }} />
                         Secure
@@ -136,6 +138,7 @@ const Dashboard = () => {
                     </div>
                 </div>
             </div>
+
         </motion.div>
     );
 };

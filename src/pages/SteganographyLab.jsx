@@ -92,7 +92,7 @@ const SteganographyLab = () => {
                 <p>Learn how to conceal secret messages within ordinary images using Least Significant Bit (LSB) encoding.</p>
             </header>
 
-            <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(400px, 1fr))', gap: '24px' }}>
+            <div className="responsive-grid">
                 {/* Encoding Section */}
                 <Card title="Encode Secrets">
                     <div style={{ display: 'flex', flexDirection: 'column', gap: '16px' }}>
@@ -101,7 +101,7 @@ const SteganographyLab = () => {
                             style={{
                                 border: '2px dashed var(--border-color)',
                                 borderRadius: '8px',
-                                padding: '40px',
+                                padding: 'clamp(20px, 5vw, 40px)',
                                 textAlign: 'center',
                                 cursor: 'pointer',
                                 backgroundColor: 'rgba(255, 255, 255, 0.02)',
@@ -134,7 +134,8 @@ const SteganographyLab = () => {
                                     borderRadius: '8px',
                                     color: 'var(--text-main)',
                                     minHeight: '100px',
-                                    outline: 'none'
+                                    outline: 'none',
+                                    fontSize: '1rem'
                                 }}
                             />
                         </div>
@@ -143,12 +144,13 @@ const SteganographyLab = () => {
                             onClick={handleEncode}
                             disabled={!image || !message || loading}
                             style={{
-                                padding: '12px',
+                                padding: '14px',
                                 backgroundColor: 'var(--primary-accent)',
                                 color: 'black',
                                 fontWeight: 600,
                                 borderRadius: '8px',
-                                opacity: (!image || !message || loading) ? 0.5 : 1
+                                opacity: (!image || !message || loading) ? 0.5 : 1,
+                                fontSize: '1rem'
                             }}
                         >
                             {loading ? 'Processing...' : 'Generate Stego Image'}
@@ -195,7 +197,7 @@ const SteganographyLab = () => {
                                 disabled={(!image && !encodedImage) || loading}
                                 style={{
                                     flex: 1,
-                                    padding: '12px',
+                                    padding: '14px',
                                     backgroundColor: 'transparent',
                                     border: '1px solid var(--secondary-accent)',
                                     color: 'var(--secondary-accent)',
@@ -204,7 +206,8 @@ const SteganographyLab = () => {
                                     display: 'flex',
                                     alignItems: 'center',
                                     justifyContent: 'center',
-                                    gap: '8px'
+                                    gap: '8px',
+                                    fontSize: '1rem'
                                 }}
                             >
                                 <Eye size={18} /> Decode Message
@@ -231,7 +234,7 @@ const SteganographyLab = () => {
             </div>
 
             {/* Explanation Section */}
-            <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(400px, 1fr))', gap: '24px' }}>
+            <div className="responsive-grid">
                 <Card title="Concept Overview" icon={<Info size={20} />}>
                     <div style={{ color: 'var(--text-secondary)', fontSize: '0.95rem' }}>
                         <h3 style={{ color: 'var(--text-main)', fontSize: '1.1rem', marginBottom: '8px' }}>What is Steganography?</h3>
@@ -256,6 +259,7 @@ const SteganographyLab = () => {
                     </div>
                 </Card>
             </div>
+
 
             <canvas ref={canvasRef} style={{ display: 'none' }} />
         </div>

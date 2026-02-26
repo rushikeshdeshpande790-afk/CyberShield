@@ -37,27 +37,28 @@ const Overview = () => {
             </header>
 
             {/* Stats Grid */}
-            <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(240px, 1fr))', gap: '20px' }}>
+            <div className="responsive-grid" style={{ gridTemplateColumns: 'repeat(auto-fit, minmax(min(100%, 200px), 1fr))' }}>
                 <StatCard label="Total Simulations" value={history.length} icon={<Zap size={24} />} />
                 <StatCard label="Security Level" value="Advanced" color="var(--secondary-accent)" icon={<ShieldCheck size={24} />} />
                 <StatCard label="Network Health" value="98%" color="var(--primary-accent)" icon={<Activity size={24} />} />
                 <StatCard label="Threat Awareness" value="High" color="var(--danger)" icon={<AlertTriangle size={24} />} />
             </div>
 
-            <div style={{ display: 'grid', gridTemplateColumns: '2fr 1fr', gap: '24px' }}>
+            <div className="responsive-grid" style={{ gridTemplateColumns: 'repeat(auto-fit, minmax(min(100%, 350px), 1fr))' }}>
                 {/* Full Activity Log */}
                 <section style={{ display: 'flex', flexDirection: 'column', gap: '20px' }}>
-                    <h2 style={{ fontSize: '1.5rem', marginBottom: '0' }}>Complete Activity Stream</h2>
+                    <h2 style={{ fontSize: 'clamp(1.2rem, 4vw, 1.5rem)', marginBottom: '0' }}>Complete Activity Stream</h2>
                     <Card style={{ padding: '0', overflow: 'hidden' }}>
                         {history.length > 0 ? (
                             <ul style={{ listStyle: 'none', margin: 0, padding: 0 }}>
                                 {history.map((act, idx) => (
                                     <li key={act.id} style={{
-                                        padding: '20px',
+                                        padding: 'clamp(12px, 3vw, 20px)',
                                         borderBottom: idx === history.length - 1 ? 'none' : '1px solid var(--border-color)',
                                         display: 'flex',
                                         alignItems: 'center',
-                                        gap: '16px'
+                                        gap: 'clamp(12px, 3vw, 16px)',
+                                        flexWrap: 'wrap'
                                     }}>
                                         <div style={{
                                             padding: '10px',
@@ -67,12 +68,12 @@ const Overview = () => {
                                         }}>
                                             <History size={20} />
                                         </div>
-                                        <div style={{ flex: 1 }}>
-                                            <p style={{ margin: 0, fontSize: '1rem', fontWeight: 600, color: 'var(--text-main)' }}>{act.type}</p>
-                                            <p style={{ margin: 0, fontSize: '0.875rem' }}>{act.details}</p>
+                                        <div style={{ flex: '1 1 200px' }}>
+                                            <p style={{ margin: 0, fontSize: '0.95rem', fontWeight: 600, color: 'var(--text-main)' }}>{act.type}</p>
+                                            <p style={{ margin: 0, fontSize: '0.85rem' }}>{act.details}</p>
                                             <p style={{ margin: '4px 0 0', fontSize: '0.75rem', opacity: 0.6 }}>{act.date}</p>
                                         </div>
-                                        <div style={{ textAlign: 'right' }}>
+                                        <div style={{ textAlign: 'right', flex: '0 0 auto' }}>
                                             <span style={{ fontSize: '0.75rem', fontWeight: 700, color: 'var(--primary-accent)', display: 'block' }}>{act.id}</span>
                                             <span style={{
                                                 fontSize: '0.65rem',
@@ -98,7 +99,7 @@ const Overview = () => {
 
                 {/* Analytics Card */}
                 <section style={{ display: 'flex', flexDirection: 'column', gap: '20px' }}>
-                    <h2 style={{ fontSize: '1.5rem', marginBottom: '0' }}>Insights</h2>
+                    <h2 style={{ fontSize: 'clamp(1.2rem, 4vw, 1.5rem)', marginBottom: '0' }}>Insights</h2>
                     <Card title="Traffic Analysis" icon={<BarChart3 size={20} />}>
                         <div style={{ display: 'flex', flexDirection: 'column', gap: '16px' }}>
                             {[
@@ -124,11 +125,12 @@ const Overview = () => {
                     </Card>
 
                     <Card title="Security Score" style={{ textAlign: 'center' }}>
-                        <div style={{ fontSize: '3rem', fontWeight: 800, color: 'var(--primary-accent)', margin: '10px 0' }}>A+</div>
+                        <div style={{ fontSize: 'clamp(2rem, 8vw, 3rem)', fontWeight: 800, color: 'var(--primary-accent)', margin: '10px 0' }}>A+</div>
                         <p style={{ fontSize: '0.85rem' }}>Your current security configuration meets the highest standards.</p>
                     </Card>
                 </section>
             </div>
+
         </motion.div>
     );
 };

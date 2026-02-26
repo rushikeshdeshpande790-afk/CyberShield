@@ -40,7 +40,7 @@ const Documentation = () => {
                 <p>Comprehensive guide to the CyberShield Lab project, its features, and how to contribute.</p>
             </header>
 
-            <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))', gap: '24px' }}>
+            <div className="responsive-grid" style={{ gridTemplateColumns: 'repeat(auto-fit, minmax(min(100%, 300px), 1fr))' }}>
                 {sections.map((section, idx) => (
                     <Card key={idx} title={section.title} icon={section.icon}>
                         {Array.isArray(section.content) ? (
@@ -55,6 +55,7 @@ const Documentation = () => {
                     </Card>
                 ))}
             </div>
+
 
             <Card title="Contribution Guide" icon={<Github size={20} />}>
                 <div style={{ color: 'var(--text-secondary)', fontSize: '0.9rem' }}>

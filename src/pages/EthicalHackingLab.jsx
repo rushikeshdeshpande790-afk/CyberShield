@@ -99,7 +99,7 @@ const EthicalHackingLab = () => {
                 <p>Simulation environment to understand cyber attack vectors and their corresponding defensive strategies.</p>
             </header>
 
-            <div style={{ display: 'grid', gridTemplateColumns: 'minmax(300px, 1fr) 2fr', gap: '24px' }}>
+            <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(min(100%, 350px), 1fr))', gap: '24px' }}>
                 {/* Attack Selector */}
                 <section style={{ display: 'flex', flexDirection: 'column', gap: '20px' }}>
                     <h2 style={{ fontSize: '1.25rem' }}>Select Attack Vector</h2>
@@ -108,7 +108,7 @@ const EthicalHackingLab = () => {
                             key={attack.id}
                             onClick={() => !isSimulating && setActiveAttack(attack)}
                             style={{
-                                padding: '20px',
+                                padding: 'clamp(16px, 4vw, 20px)',
                                 borderRadius: '12px',
                                 backgroundColor: activeAttack?.id === attack.id ? 'rgba(31, 111, 235, 0.1)' : 'var(--card-color)',
                                 border: `1px solid ${activeAttack?.id === attack.id ? 'var(--secondary-accent)' : 'var(--border-color)'}`,
@@ -116,17 +116,17 @@ const EthicalHackingLab = () => {
                                 transition: 'all 0.2s ease'
                             }}
                         >
-                            <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: '8px' }}>
+                            <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: '8px', flexWrap: 'wrap', gap: '8px' }}>
                                 <h3 style={{ margin: 0, fontSize: '1.1rem' }}>{attack.name}</h3>
                                 <span style={{
-                                    fontSize: '0.75rem',
+                                    fontSize: '0.7rem',
                                     padding: '2px 8px',
                                     borderRadius: '10px',
                                     backgroundColor: attack.risk === 'Critical' || attack.risk === 'High' ? 'rgba(255, 77, 77, 0.1)' : 'rgba(0, 255, 136, 0.1)',
                                     color: attack.risk === 'Critical' || attack.risk === 'High' ? 'var(--danger)' : 'var(--primary-accent)',
                                     border: `1px solid ${attack.risk === 'Critical' || attack.risk === 'High' ? 'var(--danger)' : 'var(--primary-accent)'}`
                                 }}>
-                                    {attack.risk} Risk
+                                    {attack.risk}
                                 </span>
                             </div>
                             <p style={{ fontSize: '0.85rem', marginBottom: 0 }}>{attack.description}</p>
@@ -140,29 +140,30 @@ const EthicalHackingLab = () => {
                         backgroundColor: '#000',
                         borderRadius: '12px',
                         border: '1px solid var(--border-color)',
-                        height: '400px',
+                        minHeight: '400px',
                         display: 'flex',
                         flexDirection: 'column',
                         overflow: 'hidden'
                     }}>
                         <div style={{ padding: '12px 20px', backgroundColor: '#161b22', borderBottom: '1px solid var(--border-color)', display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
                             <div style={{ display: 'flex', gap: '8px' }}>
-                                <div style={{ width: '12px', height: '12px', borderRadius: '50%', backgroundColor: '#ff5f56' }} />
-                                <div style={{ width: '12px', height: '12px', borderRadius: '50%', backgroundColor: '#ffbd2e' }} />
-                                <div style={{ width: '12px', height: '12px', borderRadius: '50%', backgroundColor: '#27c93f' }} />
+                                <div style={{ width: '10px', height: '10px', borderRadius: '50%', backgroundColor: '#ff5f56' }} />
+                                <div style={{ width: '10px', height: '10px', borderRadius: '50%', backgroundColor: '#ffbd2e' }} />
+                                <div style={{ width: '10px', height: '10px', borderRadius: '50%', backgroundColor: '#27c93f' }} />
                             </div>
-                            <span style={{ fontSize: '0.75rem', color: 'var(--text-secondary)', fontFamily: 'monospace' }}>cyber-terminal v2.4</span>
+                            <span style={{ fontSize: '0.7rem', color: 'var(--text-secondary)', fontFamily: 'monospace', overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>cyber-terminal v2.4</span>
                         </div>
 
                         <div
                             ref={terminalRef}
                             style={{
                                 flex: 1,
-                                padding: '20px',
+                                padding: 'clamp(12px, 4vw, 20px)',
                                 fontFamily: '"JetBrains Mono", monospace',
-                                fontSize: '0.9rem',
+                                fontSize: '0.85rem',
                                 color: '#fff',
-                                overflowY: 'auto'
+                                overflowY: 'auto',
+                                minHeight: '300px'
                             }}
                         >
                             {logs.length === 0 && <p style={{ color: '#555' }}>[ SYSTEM IDLE - SELECT VECTOR TO START ]</p>}
@@ -172,6 +173,7 @@ const EthicalHackingLab = () => {
                                     <motion.span
                                         initial={{ opacity: 0 }}
                                         animate={{ opacity: 1 }}
+                                        style={{ wordBreak: 'break-all' }}
                                     >
                                         {log.text}
                                     </motion.span>
@@ -186,23 +188,26 @@ const EthicalHackingLab = () => {
                             )}
                         </div>
 
-                        <div style={{ padding: '12px 20px', borderTop: '1px solid var(--border-color)', textAlign: 'right' }}>
+                        <div style={{ padding: '12px 20px', borderTop: '1px solid var(--border-color)', textAlign: 'center' }}>
                             <button
                                 onClick={() => startSimulation(activeAttack)}
                                 disabled={!activeAttack || isSimulating}
                                 style={{
+                                    width: '100%',
                                     backgroundColor: 'var(--primary-accent)',
                                     color: '#000',
-                                    padding: '6px 16px',
-                                    borderRadius: '4px',
-                                    fontWeight: 600,
+                                    padding: '12px 16px',
+                                    borderRadius: '8px',
+                                    fontWeight: 700,
                                     display: 'inline-flex',
                                     alignItems: 'center',
-                                    gap: '8px',
-                                    opacity: (!activeAttack || isSimulating) ? 0.5 : 1
+                                    justifyContent: 'center',
+                                    gap: '12px',
+                                    opacity: (!activeAttack || isSimulating) ? 0.5 : 1,
+                                    fontSize: '1rem'
                                 }}
                             >
-                                <Play size={16} fill="black" /> Execute Payload
+                                <Play size={18} fill="black" /> Execute Payload
                             </button>
                         </div>
                     </div>
@@ -213,20 +218,20 @@ const EthicalHackingLab = () => {
                             animate={{ opacity: 1, scale: 1 }}
                         >
                             <Card title="Mitigation Strategy" icon={<ShieldCheck size={20} />}>
-                                <p style={{ color: 'var(--text-main)', marginBottom: '12px' }}>{activeAttack.mitigation}</p>
-                                <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '16px' }}>
+                                <p style={{ color: 'var(--text-main)', marginBottom: '16px', fontSize: '0.95rem' }}>{activeAttack.mitigation}</p>
+                                <div className="responsive-grid" style={{ gridTemplateColumns: 'repeat(auto-fit, minmax(140px, 1fr))', gap: '12px' }}>
                                     <div style={{ padding: '12px', borderRadius: '8px', backgroundColor: 'rgba(0, 255, 136, 0.05)', border: '1px solid rgba(0, 255, 136, 0.2)' }}>
-                                        <h5 style={{ margin: '0 0 4px 0', color: 'var(--primary-accent)', fontSize: '0.8rem' }}>THREAT DETECTED</h5>
+                                        <h5 style={{ margin: '0 0 4px 0', color: 'var(--primary-accent)', fontSize: '0.75rem' }}>THREAT DETECTED</h5>
                                         <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
                                             <Bug size={14} />
-                                            <span style={{ fontSize: '0.9rem' }}>Exploit Neutralized</span>
+                                            <span style={{ fontSize: '0.85rem' }}>Neutralized</span>
                                         </div>
                                     </div>
                                     <div style={{ padding: '12px', borderRadius: '8px', backgroundColor: 'rgba(31, 111, 235, 0.05)', border: '1px solid rgba(31, 111, 235, 0.2)' }}>
-                                        <h5 style={{ margin: '0 0 4px 0', color: 'var(--secondary-accent)', fontSize: '0.8rem' }}>SURVEILLANCE</h5>
+                                        <h5 style={{ margin: '0 0 4px 0', color: 'var(--secondary-accent)', fontSize: '0.75rem' }}>SURVEILLANCE</h5>
                                         <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
                                             <Activity size={14} />
-                                            <span style={{ fontSize: '0.9rem' }}>Logs Generated</span>
+                                            <span style={{ fontSize: '0.85rem' }}>Logs Generated</span>
                                         </div>
                                     </div>
                                 </div>
@@ -237,7 +242,7 @@ const EthicalHackingLab = () => {
             </div>
 
             {/* Educational Section */}
-            <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(400px, 1fr))', gap: '24px' }}>
+            <div className="responsive-grid">
                 <Card title="Concept Overview" icon={<Info size={20} />}>
                     <div style={{ color: 'var(--text-secondary)', fontSize: '0.95rem' }}>
                         <h3 style={{ color: 'var(--text-main)', fontSize: '1.1rem', marginBottom: '8px' }}>What is Ethical Hacking?</h3>
@@ -268,6 +273,7 @@ const EthicalHackingLab = () => {
                     </div>
                 </Card>
             </div>
+
         </div>
     );
 };

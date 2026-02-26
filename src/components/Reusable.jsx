@@ -9,7 +9,7 @@ export const Card = ({ children, title, subtitle, icon, className = '', style = 
                 backgroundColor: 'var(--card-color)',
                 borderRadius: '12px',
                 border: '1px solid var(--border-color)',
-                padding: '24px',
+                padding: 'clamp(16px, 4vw, 24px)',
                 ...style
             }}
             className={`card ${className}`}
@@ -28,8 +28,8 @@ export const Card = ({ children, title, subtitle, icon, className = '', style = 
 
 export const StatCard = ({ label, value, trend, icon, color = 'var(--primary-accent)' }) => {
     return (
-        <Card style={{ padding: '20px' }}>
-            <div style={{ display: 'flex', alignItems: 'center', gap: '16px' }}>
+        <Card style={{ padding: 'clamp(14px, 3.5vw, 20px)' }}>
+            <div style={{ display: 'flex', alignItems: 'center', gap: 'clamp(12px, 3vw, 16px)' }}>
                 <div style={{
                     width: '48px',
                     height: '48px',

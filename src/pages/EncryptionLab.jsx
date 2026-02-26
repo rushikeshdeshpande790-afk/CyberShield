@@ -73,7 +73,7 @@ const EncryptionLab = () => {
                 <p>Explore the evolution of cryptography from ancient classical ciphers to modern military-grade encryption.</p>
             </header>
 
-            <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(400px, 1fr))', gap: '24px' }}>
+            <div className="responsive-grid">
                 {/* Configuration Section */}
                 <Card title="Configuration">
                     <div style={{ display: 'flex', flexDirection: 'column', gap: '20px' }}>
@@ -93,7 +93,8 @@ const EncryptionLab = () => {
                                     border: '1px solid var(--border-color)',
                                     borderRadius: '8px',
                                     color: 'var(--text-main)',
-                                    outline: 'none'
+                                    outline: 'none',
+                                    fontSize: '1rem'
                                 }}
                             >
                                 {methods.map(m => (
@@ -107,11 +108,12 @@ const EncryptionLab = () => {
                                 onClick={() => setIsDecrypt(false)}
                                 style={{
                                     flex: 1,
-                                    padding: '8px',
+                                    padding: '10px 8px',
                                     borderRadius: '6px',
                                     backgroundColor: !isDecrypt ? 'var(--secondary-accent)' : 'transparent',
                                     color: !isDecrypt ? 'white' : 'var(--text-secondary)',
-                                    fontWeight: 600
+                                    fontWeight: 600,
+                                    fontSize: '0.9rem'
                                 }}
                             >
                                 Encrypt
@@ -121,12 +123,13 @@ const EncryptionLab = () => {
                                 disabled={method === 'sha256'}
                                 style={{
                                     flex: 1,
-                                    padding: '8px',
+                                    padding: '10px 8px',
                                     borderRadius: '6px',
                                     backgroundColor: isDecrypt ? 'var(--secondary-accent)' : 'transparent',
                                     color: isDecrypt ? 'white' : 'var(--text-secondary)',
                                     fontWeight: 600,
-                                    opacity: method === 'sha256' ? 0.3 : 1
+                                    opacity: method === 'sha256' ? 0.3 : 1,
+                                    fontSize: '0.9rem'
                                 }}
                             >
                                 Decrypt
@@ -147,13 +150,14 @@ const EncryptionLab = () => {
                                 placeholder="Enter key..."
                                 style={{
                                     width: '100%',
-                                    padding: '12px',
+                                    padding: '14px 12px',
                                     backgroundColor: 'var(--bg-color)',
                                     border: '1px solid var(--border-color)',
                                     borderRadius: '8px',
                                     color: 'var(--text-main)',
                                     outline: 'none',
-                                    opacity: method === 'sha256' ? 0.5 : 1
+                                    opacity: method === 'sha256' ? 0.5 : 1,
+                                    fontSize: '1rem'
                                 }}
                             />
                         </div>
@@ -177,7 +181,8 @@ const EncryptionLab = () => {
                                     borderRadius: '8px',
                                     color: 'var(--text-main)',
                                     minHeight: '100px',
-                                    outline: 'none'
+                                    outline: 'none',
+                                    fontSize: '1rem'
                                 }}
                             />
                         </div>
@@ -185,15 +190,16 @@ const EncryptionLab = () => {
                         <button
                             onClick={handleProcess}
                             style={{
-                                padding: '12px',
+                                padding: '14px',
                                 backgroundColor: 'var(--primary-accent)',
                                 color: 'black',
-                                fontWeight: 600,
+                                fontWeight: 700,
                                 borderRadius: '8px',
                                 display: 'flex',
                                 alignItems: 'center',
                                 justifyContent: 'center',
-                                gap: '8px'
+                                gap: '8px',
+                                fontSize: '1rem'
                             }}
                         >
                             <RefreshCcw size={18} /> Process {method.toUpperCase()}
@@ -223,7 +229,7 @@ const EncryptionLab = () => {
 
             {/* Info Section */}
             {/* Educational Section */}
-            <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(400px, 1fr))', gap: '24px' }}>
+            <div className="responsive-grid">
                 <Card title="Concept Overview" icon={<Info size={20} />}>
                     <div style={{ color: 'var(--text-secondary)', fontSize: '0.95rem' }}>
                         <h3 style={{ color: 'var(--text-main)', fontSize: '1.1rem', marginBottom: '8px' }}>What is Encryption?</h3>
@@ -254,6 +260,7 @@ const EncryptionLab = () => {
                     </div>
                 </Card>
             </div>
+
         </div>
     );
 };

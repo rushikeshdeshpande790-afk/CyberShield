@@ -82,9 +82,59 @@ h5,
 h6 {
     font-weight: 600;
     margin-bottom: 1rem;
+    line-height: 1.2;
+}
+
+h1 {
+    font-size: clamp(2rem, 8vw, 3.5rem);
+}
+
+h2 {
+    font-size: clamp(1.5rem, 5vw, 2.25rem);
+}
+
+h3 {
+    font-size: clamp(1.25rem, 4vw, 1.75rem);
 }
 
 p {
     color: var(--text-secondary);
     margin-bottom: 1rem;
+    font-size: clamp(0.9rem, 2vw, 1rem);
+}
+
+/* Responsive Helpers */
+.mobile-only {
+    display: none;
+}
+
+@media (max-width: 768px) {
+    :root {
+        --navbar-height: 70px;
+    }
+
+    .mobile-only {
+        display: block;
+    }
+
+    .desktop-only {
+        display: none;
+    }
+
+    body {
+        font-size: 14px;
+    }
+}
+
+/* Grid & Layout Helpers */
+.responsive-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(min(100%, 350px), 1fr));
+    gap: 24px;
+}
+
+@media (max-width: 480px) {
+    .responsive-grid {
+        grid-template-columns: 1fr;
+    }
 }
