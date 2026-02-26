@@ -15,6 +15,7 @@ import {
 } from 'lucide-react';
 import { useAuth } from '../contexts/AuthContext';
 import { AnimatePresence, motion } from 'framer-motion';
+import logo from '../assets/logo.jpg';
 
 const Navbar = () => {
     const { user, logout, isAuthenticated } = useAuth();
@@ -47,10 +48,10 @@ const Navbar = () => {
             top: 0,
             zIndex: 100
         }}>
-            <div style={{ display: 'flex', alignItems: 'center', gap: '12px', marginRight: '32px' }}>
-                <ShieldCheck color="var(--primary-accent)" size={28} />
-                <span style={{ fontSize: '1.25rem', fontWeight: 800, color: 'var(--primary-accent)', letterSpacing: '-0.02em' }}>CyberShield</span>
-            </div>
+            <NavLink to="/" style={{ display: 'flex', alignItems: 'center', gap: '12px', marginRight: '32px', textDecoration: 'none' }}>
+                <img src={logo} alt="CyberShield Logo" style={{ height: '32px', width: 'auto', borderRadius: '4px' }} />
+                <span className="desktop-only" style={{ fontSize: '1.25rem', fontWeight: 800, color: 'var(--primary-accent)', letterSpacing: '-0.02em' }}>CyberShield</span>
+            </NavLink>
 
             {/* Desktop Nav */}
             <div className="desktop-only" style={{ display: 'flex', alignItems: 'center', gap: '4px', overflowX: 'auto', flex: 1, height: '100%', scrollbarWidth: 'none', whiteSpace: 'nowrap' }}>
@@ -134,6 +135,10 @@ const Navbar = () => {
                             overflowY: 'auto'
                         }}
                     >
+                        <div style={{ display: 'flex', alignItems: 'center', gap: '12px', marginBottom: '12px', padding: '0 8px' }}>
+                            <img src={logo} alt="CyberShield Logo" style={{ height: '36px', width: 'auto', borderRadius: '4px' }} />
+                            <span style={{ fontSize: '1.25rem', fontWeight: 800, color: 'var(--primary-accent)', letterSpacing: '-0.02em' }}>CyberShield</span>
+                        </div>
                         {navItems.map((item) => (
                             <NavLink
                                 key={item.path}
